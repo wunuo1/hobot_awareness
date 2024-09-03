@@ -10,20 +10,26 @@ This package utilizes the Tongyi Qianwen API to decompose input text into tasks 
 1. Have the RDK suite ready and running properly.
 2. Obtain an API KEY from Tongyi Qianwen and replace the `api_key` in the config file.
 
-## Installing the Package
+## Compile and Runs
 
-**1. Install the package**
+**1. Compile**
 
-After starting the robot, connect to the robot via terminal SSH or VNC, click the "One-Click Deployment" button at the top right of this page, and copy the following command to run on the RDK system to complete the installation of the relevant Node.
+After starting the robot, connect to it via SSH or VNC on the terminal, open the terminal, pull the corresponding code, and compile and install it.
 
 ```bash
-sudo apt update
-sudo apt install -y tros-hobot-awareness
+# Pull task disassembly code
+mkdir -p ~/tonypi_ws/src && cd ~/tonypi_ws/src
+git clone https://github.com/wunuo1/hobot_awareness.git
+
+# Compile
+cd ..
+source /opt/tros/setup.bash
+colcon build
 ```
 **2. Run the Task Decomposition Function**
 
 ```shell
-source /opt/tros/local_setup.bash
+source ~/tonypi_ws/install/setup.bash
 cp -r /opt/tros/lib/hobot_awareness/config/ .
 # After running, enter the task description in the terminal, for example: put the green ball on the base
 ros2 run hobot_awareness hobot_awareness
